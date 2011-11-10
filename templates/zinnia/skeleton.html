@@ -1,0 +1,78 @@
+{% load zinnia_tags i18n %}
+{% get_tags as entry_tags %}
+<!DOCTYPE html>
+<html xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="follow, all" />
+    <meta name="description" content="{% block meta-description %}Demonstration of the Zinnia Blog application.{% endblock %}" />
+    <meta name="keywords" content="{% block meta-keywords %}django, blog, zinnia, {{ entry_tags|join:", "}}{% endblock %}" />
+    <meta name="author" content="Fantomas42" />
+    {% block meta %}{% endblock %}
+    <link rel="pingback" href="/xmlrpc/" />
+    <link rel="shortcut icon" href="{{ STATIC_URL }}zinnia/img/favicon.ico" />
+    <link rel="home" href="{% url zinnia_entry_archive_index %}" />
+    <link rel="stylesheet" type="text/css" media="screen, projection" href="{{ STATIC_URL }}zinnia/css/screen.css" />
+    <link rel="stylesheet" type="text/css" media="print" href="{{ STATIC_URL }}zinnia/css/print.css" />
+    <link rel="stylesheet" type="text/css" media="screen, print" href="{{ STATIC_URL }}custom/css/custom.css" />
+    <link rel="stylesheet" type="text/css" media="screen, print" href="{{ STATIC_URL }}custom/css/pygments.css" />
+    <!--[if lt IE 8]>
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="{{ STATIC_URL }}zinnia/css/ie.css" />
+    <![endif]-->
+    {% block link %}{% endblock %}
+    {% block script %}{% endblock %}
+    <title>Tutos Django - {% block title %}{% endblock %}</title>
+  </head>
+  <body id="tutos-django">
+    <div class="container">
+      <div id="header" class="span-24 last">
+	<div id="title">
+	  <h1>
+	    <a href="{% url zinnia_entry_archive_index %}" title="Tutos Django like Blog" rel="home">
+	      Tutos Django like Blog
+	    </a>
+	  </h1>
+	  <blockquote>
+	    <p>Faites ce que vous voulez.</p>
+	  </blockquote>
+	</div>
+	<div id="reseaux_sociaux">
+	  <h4>Retrouvez-moi sur...</h4>
+	  <a href="https://plus.google.com/" title="Google+">
+	    <img src="{{ STATIC_URL }}custom/img/google_dark.png" alt="Google+"/>
+	  </a>
+	  <a href="http://www.twitter.com/" title="Twitter">
+	    <img src="{{ STATIC_URL }}custom/img/twitter_dark.png" alt="Twitter" />
+	  </a>
+	  <a href="http://fr.linkedin.com/" title="LinkedIn">
+	    <img src="{{ STATIC_URL }}custom/img/in_dark.png" alt="LinkedIn" />
+	  </a>
+	  <a href="{% url zinnia_entry_latest_feed %}" title="{% trans "RSS Feed of latest entries" %}" class="link feeds">
+	    <img src="{{ STATIC_URL }}custom/img/rss_dark.png" alt="Rss" />
+	  </a>
+	</div>
+	<div id="breadcrumbs" class="span-24 last">
+	  {% block breadcrumbs %}{% endblock %}
+	</div>
+      </div>
+      <div id="body" class="span-24 last">
+	<div id="content" class="hfeed span-16 border">
+	  {% block content %}
+	  <h3>The content block need to be overrided!</h3>
+	  {% endblock %}
+	</div>
+	<div id="sidebar" class="prepend-1 span-7 last">
+	  {% block sidebar %}
+	  {% endblock %}
+	</div>
+      </div>
+      <div id="footer" class="span-24 last">
+	<a href="http://djangopony.com/" class="ponybadge" title="Magic! Ponies! Django! Whee!"><img src="http://media.djangopony.com/img/small/badge.png" width="210" height="65" alt="pony powered" /></a>
+	<p>Powered by <a href="http://www.djangoproject.com">Django</a> and <a href="http://github.com/Fantomas42/django-blog-zinnia">Zinnia {{ ZINNIA_VERSION }}</a>.
+	</p>
+      </div>
+    </div>
+  </body>
+</html>
+
+
