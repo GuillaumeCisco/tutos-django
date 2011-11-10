@@ -1,0 +1,48 @@
+tutosdjango app for Django Blog zinnia
+
+Here is the code source for the blog Tutos-Django.com.
+This blog works using zinnia 0.10.dev ! and no inferior version, so be carefull !
+
+You should also have pygments 1.4 installed too.
+
+I included some custom css ans images, and modified some zinnia templates to make it sexy for my own need :)
+
+You need to know few things for testing this app.
+First check the folder init:
+It contains a settings.py and an urls.py files example you should place in your project, not in the tutosdjango app ! So move them now !
+You can also see that a public directory exists. This directory should be placed in your project as urls.py and settings.py.
+This public directory is where your production server should redirect, see the settings.py for more comprehnsion.
+
+And as you can see these settings are made for a production mode !
+And be carefull some of my templatetags (img_resize.py) use media_root and media_url variable. So don't forget to set them !
+
+You need to do two others things now for displaying the media of zinnia and the admin interface for making tutosdjango app run:
+Create into your static directory (present in the public directory) two symbols links:
+admin -> /path_where_django_is_installed/python/django/1.3.1/django/contrib/admin/media/
+zinnia -> /path_where_zinnia_is_installed/zinnia/static/zinnia/
+
+Zinnia 0.10.dev uses django 1.3 AND static files so, you need to do this.
+
+Another thing is when you create an entry in the admin interface, if you want to highlight your code, don't forget to add 'pre'
+code to it using the "preformatted" button of the interface.
+For highlighting python code, modify the html generated and include attribute 'lang="python"' to your 'pre'  balise.
+
+You can do this for bash, python_console and html (see highlight.py templatetag for more information):
+
+Some examples:
+bash : <pre lang="bash">$ cd ~</pre>
+python : <pre lang="python">from __future__ import this</pre>
+html : <pre lang="html">&lt;img src="logo.png"&gt;</pre>
+python_console : <pre lang="python_console">import this</pre>
+
+
+So be carefull when you want to edit in the admin interface, be sure inside your pre balises there is no '<' '>' characters (non exhaustive).
+Otherwise, you'll have a lot of errors in rendering your post.
+The best way to do it : write the code, preformat it, add the attribute lang by displaying the html code generated.
+If you want to edit the code : make your preformatted code in a paragraph mode, edit it, and preformat it, readd lang attribute.
+
+
+A templatetag for resizing images has been done too, you can see it : img_resize.py. By default it set the max-width of your
+images uploades in the uploads directory to 600px. So as you can see, it's only apply to images in this particular directory !
+
+Hope you'll like the source code for tutosdjango ;)
